@@ -10,4 +10,7 @@
     <string name="menu_trips">Trips</string>
     <string name="menu_wallet">Wallet</string>
     <string name="menu_weather">Weather</string>
+
+    <string name="add_wallet">Add otters to your wallet!</string>
+    <string name="add_trips">Add trips to see otters!</string>
 </resources>
