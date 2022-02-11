@@ -13,4 +13,6 @@
 
     <string name="add_wallet">Add otters to your wallet!</string>
     <string name="add_trips">Add trips to see otters!</string>
+    <string name="title_activity_maps">MapsActivity</string>
+
 </resources>
