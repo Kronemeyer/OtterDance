@@ -6,8 +6,11 @@ import androidx.lifecycle.ViewModel
 
 class WalletViewModel : ViewModel() {
 
+    private val initialWallet = OtterWallet(0.0f)
+
     private val _text = MutableLiveData<String>().apply {
-        value = "This is wallet Fragment"
+        value = "Account ID: ${initialWallet.otterId}"
+
     }
     val text: LiveData<String> = _text
 }
