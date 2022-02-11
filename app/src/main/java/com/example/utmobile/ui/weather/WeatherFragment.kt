@@ -4,6 +4,7 @@ import android.Manifest
 import android.app.Instrumentation
 import android.content.Context
 import android.content.Context.LOCATION_SERVICE
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
 import android.location.LocationListener
@@ -49,24 +50,28 @@ private var _binding: FragmentWeatherBinding? = null
     slideshowViewModel.text.observe(viewLifecycleOwner) {
       textView.text = it
     }
-      var locationManager = if
-              (ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
-            && ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-          throw SecurityException()
-      } else {
-          getSystemService(requireContext(), LocationManager::class.java) as LocationManager
-      }
 
-      locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 5f, this)
+      val intent = Intent(context, GPSTrackerActivity::class.java)
+      startActivityForResult(intent, 1)
+
       return root
   }
 
-override fun onDestroyView() {
+    override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
 
     override fun onLocationChanged(p0: Location) {
         TODO("Not implemented yet")
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(requestCode == 1) {
+            var extras = data!!.extras
+            var longitude = extras!!.getDouble("Longitude")
+            var latitude = extras!!.getDouble("Latitude")
+        }
     }
 }
