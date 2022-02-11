@@ -13,8 +13,8 @@ class OtterWallet(
     }
     fun getBalance() : String {
         val format: NumberFormat = NumberFormat.getCurrencyInstance()
-        format.setMaximumFractionDigits(0)
-        format.setCurrency(Currency.getInstance("USD"))
+        format.maximumFractionDigits = 2
+        format.currency = Currency.getInstance("USD")
 
         return format.format(this.otterBalance)
     }
